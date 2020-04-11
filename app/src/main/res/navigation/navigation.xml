@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation.xml"
+    app:startDestination="@id/switchControlFragment">
+
+    <fragment
+        android:id="@+id/switchControlFragment"
+        android:name="com.caseytmorris.orroifttt.switchcontrol.SwitchControl"
+        android:label="fragment_switch_control"
+        tools:layout="@layout/fragment_switch_control" >
+        <action
+            android:id="@+id/action_switch_control_fragment_to_switchAddRoomFragment"
+            app:destination="@id/switchAddRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/switchAddRoomFragment"
+        android:name="com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomFragment"
+        android:label="@string/switch_add_room_fragment"
+        tools:layout="@layout/fragment_switch_add_room" > </fragment>
+
+</navigation>
