@@ -19,11 +19,9 @@ class SwitchAddRoomFragment : Fragment() {
             inflater, R.layout.fragment_switch_add_room, container, false
         )
 
-
         val application = requireNotNull(this.activity).application
 
         val roomDataSource = RoomControlDatabase.getInstance(application).roomDatabaseDao
-
 
         val viewModelFactory = SwitchAddRoomViewModelFactory(roomDataSource,application)
 

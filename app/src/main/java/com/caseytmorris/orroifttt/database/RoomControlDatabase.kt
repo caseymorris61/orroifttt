@@ -5,12 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [RoomControl::class], version = 2, exportSchema = false)
+@Database(entities = [RoomControl::class], version = 3, exportSchema = false)
 abstract class RoomControlDatabase : RoomDatabase() {
 
     abstract val roomDatabaseDao: RoomDatabaseDao
-
-//    abstract val webhookApiKeyDatabaseDao: WebhookApiKeyDatabaseDao
 
     companion object {
         @Volatile

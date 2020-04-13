@@ -10,7 +10,8 @@ data class RoomControl(
     var roomName: String = "New Room $roomId",
     var turnOnWebhook: String = "turn_on",
     var turnOffWebhook: String = "turn_off",
-    var setWebhook: String = "set"
+    var setWebhook: String = "set",
+    var webhookApiKey: String = "default_key"
 )
 
 //@Entity(tableName = "webhook_api_storage_table")
