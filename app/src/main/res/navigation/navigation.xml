@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/switchControlFragment"
         android:name="com.caseytmorris.orroifttt.switchcontrol.SwitchControl"
-        android:label="fragment_switch_control"
+        android:label="@string/switch_control_fragment"
         tools:layout="@layout/fragment_switch_control" >
         <action
             android:id="@+id/action_switch_control_fragment_to_switchAddRoomFragment"
