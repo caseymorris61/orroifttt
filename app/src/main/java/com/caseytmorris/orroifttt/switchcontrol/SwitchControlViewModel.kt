@@ -51,29 +51,12 @@ class SwitchControlViewModel (
         }
     }
 
-    private suspend fun insertRoom(room: RoomControl) {
-        withContext(Dispatchers.IO){
-            roomControlDatabase.insertRoom(room)
-        }
-    }
-
-    private suspend fun getTonight(): RoomControl? {
-
-        return withContext(Dispatchers.IO) {
-            var rc = roomControlDatabase.getTonight()
-            rc
-        }
-    }
 
 //    private suspend fun insertApiKey(webhookApiKey: WebhookApiKey) {
 //        withContext(Dispatchers.IO){
 //            apiDatabase.insertApiKey(webhookApiKey)
 //        }
 //    }
-
-    fun onSwitchControlRoomClicked(roomId: Long){
-        Log.i("Casey", "Clicked: $roomId")
-    }
 
     fun onTestAddData() {
         uiScope.launch {
@@ -82,31 +65,28 @@ class SwitchControlViewModel (
 //            apiKey.apiKey = "TESTESTESTESTCASEY"
 //
 //            insertApiKey(apiKey)
-
-            val roomControl = RoomControl()
-            roomControl.roomName = "Attic"
-
-            insertRoom(roomControl)
-
-            val rC = RoomControl()
-            rC.roomName = "Bedroom"
-            rC.turnOnWebhook = "turn_on_bedroom"
-
-            insertRoom(rC)
-
-            val tonight = getTonight()
-            val hook = tonight?.turnOnWebhook
-            Log.i("Casey","Hook is: $hook")
+//
+//            val roomControl = RoomControl()
+//            roomControl.roomName = "Attic"
+//
+//            insertRoom(roomControl)
+//
+//            val rC = RoomControl()
+//            rC.roomName = "Bedroom"
+//            rC.turnOnWebhook = "turn_on_bedroom"
+//
+//            insertRoom(rC)
+//
+//            val tonight = getTonight()
+//            val hook = tonight?.turnOnWebhook
+//            Log.i("Casey","Hook is: $hook")
         }
     }
 
     fun onTestClearAll() {
         uiScope.launch {
             Log.i("Casey","Trying to clear data")
-            clear()
-            val tonight = getTonight()
-            val hook = tonight?.turnOnWebhook ?: 47
-            Log.i("Casey","post Clear hook is: $hook")
+//            clear()
         }
     }
 
