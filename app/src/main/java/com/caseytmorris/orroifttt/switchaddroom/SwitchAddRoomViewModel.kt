@@ -13,6 +13,7 @@ import kotlinx.coroutines.*
 
 class SwitchAddRoomViewModel  (
     val roomControlDatabase: RoomDatabaseDao,
+    val webhookApiKey: String,
     application: Application
 )  : AndroidViewModel(application) {
     private var viewModelJob = Job()
@@ -29,6 +30,7 @@ class SwitchAddRoomViewModel  (
             rc.roomName = roomName?.value ?: "invalid"
             rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
+            rc.webhookApiKey = webhookApiKey
             insertRoom(rc)
 
             //navigate back

@@ -4,8 +4,11 @@
     <string name="turn_off_webhook">turn_off</string>
     <string name="set_webhook">set</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="switch_control_fragment">Orro IFTTT Control</string>
     <string name="switch_add_room_fragment">Add Room</string>
+
+    <string name="saved_webhook_api_key">saved_key_for_ifttt</string>
+    <string name="default_webhook_api_key">default-webhook-key</string>
 </resources>

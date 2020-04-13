@@ -43,11 +43,11 @@ class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHo
         fun bind(item: RoomControl) {
             roomName.text = item.roomName
             onButton.setOnClickListener {
-                sendIFTTTRequest(item.turnOnWebhook, it.context)
+                sendIFTTTRequest(item.turnOnWebhook, item.webhookApiKey, it.context)
             }
 
             offButton.setOnClickListener {
-                sendIFTTTRequest(item.turnOffWebhook, it.context)
+                sendIFTTTRequest(item.turnOffWebhook, item.webhookApiKey, it.context)
             }
             room = item
         }
@@ -62,9 +62,9 @@ class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHo
             }
         }
 
-        private fun sendIFTTTRequest(event:String, context: Context){
+        private fun sendIFTTTRequest(event: String, webhookKey: String, context: Context){
             val queue = Volley.newRequestQueue(context)
-            val url = "https://maker.ifttt.com/trigger/$event/with/key/${context.getString(R.string.webhooks_key)}"
+            val url = "https://maker.ifttt.com/trigger/$event/with/key/$webhookKey"
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
