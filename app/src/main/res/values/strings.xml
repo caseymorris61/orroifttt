@@ -12,4 +12,13 @@
     <string name="preference_file_key">preference_file_key_webhook</string>
     <string name="saved_webhook_api_key">saved_key_for_ifttt</string>
     <string name="default_webhook_api_key">default-webhook-key</string>
+    <string name="add_new_room_title_string">Add New Room</string>
+    <string name="add_room_name_hint">Room Name</string>
+    <string name="add_turn_on_key_hint">Turn On Key</string>
+    <string name="add_turn_off_key_hint">Turn Off Key</string>
+    <string name="add_webhook_key_hint">Webhook API Key</string>
+    <string name="add_room_submit_button_text">Add Room</string>
+    <string name="controls_list_header_text">Smart Lighting Room Controls</string>
+    <string name="turn_on_button_text">Turn On</string>
+    <string name="turn_off_button_text">Turn Off</string>
 </resources>
