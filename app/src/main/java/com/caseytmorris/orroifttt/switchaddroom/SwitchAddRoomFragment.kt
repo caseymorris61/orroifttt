@@ -1,6 +1,5 @@
 package com.caseytmorris.orroifttt.switchaddroom
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,15 +19,11 @@ class SwitchAddRoomFragment : Fragment() {
             inflater, R.layout.fragment_switch_add_room, container, false
         )
 
-        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-        val defaultValue = resources.getString(R.string.default_webhook_api_key)
-        val webhook_api_key = sharedPref?.getString(getString(R.string.saved_webhook_api_key), defaultValue) ?: defaultValue
-
         val application = requireNotNull(this.activity).application
 
         val roomDataSource = RoomControlDatabase.getInstance(application).roomDatabaseDao
 
-        val viewModelFactory = SwitchAddRoomViewModelFactory(roomDataSource,webhook_api_key,application)
+        val viewModelFactory = SwitchAddRoomViewModelFactory(roomDataSource,application)
 
         val switchControlViewModel = ViewModelProviders.of(
             this, viewModelFactory).get(SwitchAddRoomViewModel::class.java)
