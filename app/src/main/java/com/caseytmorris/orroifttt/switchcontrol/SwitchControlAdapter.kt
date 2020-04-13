@@ -2,6 +2,7 @@ package com.caseytmorris.orroifttt.switchcontrol
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
@@ -17,26 +18,44 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SwitchControlAdapter : RecyclerView.Adapter<TextItemViewHolder>() {
-    var data = listOf<RoomControl>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-            Log.i("Casey","Adapter Data changed")
-        }
+class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.text_item_view,parent,false) as TextView
-        return TextItemViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
 
-    override fun getItemCount() = data.size
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
 
-    override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-        val item = data[position]
-        holder.textView.text = formatRoom(item)
+    }
 
+    class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val roomName: TextView = itemView.findViewById(R.id.room_name)
+
+        fun bind(item: RoomControl) {
+            roomName.text = item.roomName
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.list_item_room_control, parent, false)
+                return ViewHolder(view)
+            }
+        }
+    }
+
+
+}
+
+class SwitchControlDiffCallback : DiffUtil.ItemCallback<RoomControl>() {
+    override fun areItemsTheSame(oldItem: RoomControl, newItem: RoomControl): Boolean {
+        return oldItem.roomId == newItem.roomId
+    }
+
+    override fun areContentsTheSame(oldItem: RoomControl, newItem: RoomControl): Boolean {
+        return oldItem == newItem
     }
 }
 
@@ -92,15 +111,7 @@ class SwitchControlAdapter : RecyclerView.Adapter<TextItemViewHolder>() {
 //}
 //
 //
-//class SwitchControlDiffCallback : DiffUtil.ItemCallback<DataItem>() {
-//    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-//        return oldItem.id == newItem.id
-//    }
-//
-//    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-//        return oldItem == newItem
-//    }
-//}
+
 //
 //class SwitchControlListener(val clickListener: (roomId: Long) -> Unit) {
 //    fun onClick(room: RoomControl) = clickListener(room.roomId)

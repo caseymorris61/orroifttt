@@ -78,8 +78,7 @@ class SwitchControl : Fragment() {
 
         switchControlViewModel.rooms.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
-                Log.i("Casey", "Observed rooms change, updating adapter")
+                adapter.submitList(it)
             }
         })
 
