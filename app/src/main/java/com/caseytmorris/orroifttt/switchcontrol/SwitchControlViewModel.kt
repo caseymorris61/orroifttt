@@ -36,15 +36,6 @@ class SwitchControlViewModel (
         }
     }
 
-    fun onTestAddData() {
-        Log.i("Casey","Trying to add data")
-
-    }
-
-    fun onTestClearAll() {
-        Log.i("Casey","Trying to clear data")
-    }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
