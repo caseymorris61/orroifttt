@@ -13,12 +13,9 @@ import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.database.RoomDatabaseDao
 import kotlinx.coroutines.*
 
-class SwitchAddRoomViewModel  (
-    val roomControlDatabase: RoomDatabaseDao,
-    application: Application
-)  : AndroidViewModel(application) {
-    private var viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+open class SwitchViewModel(application: Application) : AndroidViewModel(application) {
+    var viewModelJob = Job()
+    val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val roomName = MutableLiveData<String>()
     val turnOnKey = MutableLiveData<String>()
@@ -27,14 +24,22 @@ class SwitchAddRoomViewModel  (
 
     var defaultStringApiKey = ""
     var webhook_api_key = ""
-    private var sharedPref: SharedPreferences
+    var sharedPref: SharedPreferences
 
     init {
         sharedPref = application?.getSharedPreferences(
-                application.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            application.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         defaultStringApiKey = application.getString(R.string.default_webhook_api_key)
         webhook_api_key = sharedPref?.getString(application.getString(R.string.saved_webhook_api_key), defaultStringApiKey) ?: defaultStringApiKey
+    }
+}
 
+class SwitchAddRoomViewModel  (
+    private val roomControlDatabase: RoomDatabaseDao,
+    application: Application
+)  : SwitchViewModel(application) {
+
+    init {
         if(webhook_api_key != defaultStringApiKey) {
             //Passing a valid string to use api key
             webhookApiKeyLiveData.value = webhook_api_key
@@ -44,6 +49,7 @@ class SwitchAddRoomViewModel  (
             Log.i("Casey","No valid api key in shared preferences. Required")
         }
     }
+
 
     fun onSubmitClicked(view: View) {
         uiScope.launch {

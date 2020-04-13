@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_switch_control_fragment_to_switchAddRoomFragment"
             app:destination="@id/switchAddRoomFragment" />
+        <action
+            android:id="@+id/action_switchControlFragment_to_switchEditRoomFragment"
+            app:destination="@id/switchEditRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/switchAddRoomFragment"
@@ -21,6 +24,18 @@
         tools:layout="@layout/fragment_switch_add_room" >
         <action
             android:id="@+id/action_switchAddRoomFragment_to_switchControlFragment"
+            app:destination="@id/switchControlFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/switchEditRoomFragment"
+        android:name="com.caseytmorris.orroifttt.switcheditroom.SwitchEditRoomFragment"
+        android:label="@string/switch_edit_room_fragment_title"
+        tools:layout="@layout/fragment_switch_edit_room" >
+        <argument
+            android:name="roomControlIdKey"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_switchEditRoomFragment_to_switchControlFragment"
             app:destination="@id/switchControlFragment" />
     </fragment>
 

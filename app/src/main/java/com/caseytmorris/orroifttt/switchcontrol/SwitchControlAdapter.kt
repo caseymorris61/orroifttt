@@ -21,8 +21,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
+import com.caseytmorris.orroifttt.databinding.ListItemRoomControlBinding
 
-class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
+class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -30,17 +31,16 @@ class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(clickListener,item)
 
     }
 
-    class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder private constructor(val binding: ListItemRoomControlBinding): RecyclerView.ViewHolder(binding.root) {
         val roomName: TextView = itemView.findViewById(R.id.room_name)
         val onButton: Button = itemView.findViewById(R.id.button_turn_on_list)
         val offButton: Button = itemView.findViewById(R.id.button_turn_off_list)
-        private lateinit var room : RoomControl
 
-        fun bind(item: RoomControl) {
+        fun bind(clickListener: RoomControlListener,item: RoomControl) {
             roomName.text = item.roomName
             onButton.setOnClickListener {
                 sendIFTTTRequest(item.turnOnWebhook, item.webhookApiKey, it.context)
@@ -49,16 +49,17 @@ class SwitchControlAdapter : ListAdapter<RoomControl,SwitchControlAdapter.ViewHo
             offButton.setOnClickListener {
                 sendIFTTTRequest(item.turnOffWebhook, item.webhookApiKey, it.context)
             }
-            room = item
+            binding.room = item
+            binding.clickListener = clickListener
         }
 
-        fun getRoom() : RoomControl = room
+        fun getRoom() : RoomControl = binding.room!!
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.list_item_room_control, parent, false)
-                return ViewHolder(view)
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemRoomControlBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
 
@@ -98,6 +99,10 @@ class SwitchControlDiffCallback : DiffUtil.ItemCallback<RoomControl>() {
     override fun areContentsTheSame(oldItem: RoomControl, newItem: RoomControl): Boolean {
         return oldItem == newItem
     }
+}
+
+class RoomControlListener(val clickListener: (roomId: Long) -> Unit) {
+    fun onClick(room: RoomControl) = clickListener(room.roomId)
 }
 
 abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

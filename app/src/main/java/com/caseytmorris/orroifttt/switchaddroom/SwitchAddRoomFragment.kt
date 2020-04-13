@@ -25,12 +25,12 @@ class SwitchAddRoomFragment : Fragment() {
 
         val viewModelFactory = SwitchAddRoomViewModelFactory(roomDataSource,application)
 
-        val switchControlViewModel = ViewModelProviders.of(
+        val switchAddRoomViewModel = ViewModelProviders.of(
             this, viewModelFactory).get(SwitchAddRoomViewModel::class.java)
 
         binding.setLifecycleOwner(this)
 
-        binding.viewModel = switchControlViewModel
+        binding.viewModel = switchAddRoomViewModel
 
         return binding.root
     }
