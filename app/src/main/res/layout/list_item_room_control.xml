@@ -7,17 +7,12 @@
         <variable
             name="room"
             type="com.caseytmorris.orroifttt.database.RoomControl" />
-
-<!--        <variable-->
-<!--            name="clickListener"-->
-<!--            type="com.caseytmorris.orroifttt.switchcontrol.SwitchControlListener" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-<!--        android:onClick="@{() -> clickListener.onClick(room)}">-->
 
 
         <TextView
