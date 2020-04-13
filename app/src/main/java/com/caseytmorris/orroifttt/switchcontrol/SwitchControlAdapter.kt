@@ -2,7 +2,6 @@ package com.caseytmorris.orroifttt.switchcontrol
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color.parseColor
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
