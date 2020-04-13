@@ -37,38 +37,29 @@
                     app:layout_constraintBottom_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/start_button"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/control_fragment_header"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:listitem="@layout/list_item_room_control"/>
 
                 <!-- With data binding and LiveData, we can track the buttons' visibility states
                      from the ViewModel. The click handler is in the ViewModel as well, and
                      you can set it for the Views using this lambda pattern. -->
 
-                <Button
-                    android:id="@+id/start_button"
+                <TextView
+                    android:id="@+id/control_fragment_header"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin"
-                    android:layout_marginTop="16dp"
-                    android:onClick="@{() -> viewModel.onTestAddData()}"
-                    android:text="Add Data"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <Button
-                    android:id="@+id/clear_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="@dimen/margin"
-                    android:onClick="@{() -> viewModel.onTestClearAll()}"
-                    android:text="Clear Data"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Smart Lighting Room Controls"
+                    android:textAlignment="center"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/start_button"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Smart Lighting Room Controls" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
