@@ -6,10 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.database.RoomDatabaseDao
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class SwitchControlViewModel (
     val roomControlDatabase: RoomDatabaseDao,
@@ -26,6 +23,18 @@ class SwitchControlViewModel (
         }
     }
 
+    private suspend fun delete(room: RoomControl){
+        withContext(Dispatchers.IO) {
+            roomControlDatabase.deleteRoom(room)
+        }
+    }
+
+    fun deleteRoom(room: RoomControl) {
+        uiScope.launch {
+            Log.i("Casey","Want to remove room name ${room.roomName}")
+            delete(room)
+        }
+    }
 
     fun onTestAddData() {
         Log.i("Casey","Trying to add data")

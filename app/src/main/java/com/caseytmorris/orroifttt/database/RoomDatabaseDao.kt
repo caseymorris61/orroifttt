@@ -1,10 +1,7 @@
 package com.caseytmorris.orroifttt.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface RoomDatabaseDao {
@@ -14,6 +11,9 @@ interface RoomDatabaseDao {
 
     @Update
     fun updateRoom(room: RoomControl)
+
+    @Delete
+    fun deleteRoom(room: RoomControl)
 
     @Query("SELECT * from room_control_table WHERE roomId = :key")
     fun getRoom(key: Long): RoomControl?

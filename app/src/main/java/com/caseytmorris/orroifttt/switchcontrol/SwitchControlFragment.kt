@@ -12,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -53,6 +55,24 @@ class SwitchControl : Fragment() {
 
         val adapter = SwitchControlAdapter()
         binding.roomList.adapter = adapter
+
+        val swipeHandler = object : SwipeToDeleteCallback(application.applicationContext) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val vh = viewHolder as SwitchControlAdapter.ViewHolder
+                binding.viewModel?.deleteRoom(vh.getRoom())
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(binding.roomList)
 
         switchControlViewModel.rooms.observe(viewLifecycleOwner, Observer {
             it?.let {
