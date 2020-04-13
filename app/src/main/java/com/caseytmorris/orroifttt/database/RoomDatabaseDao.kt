@@ -18,7 +18,7 @@ interface RoomDatabaseDao {
     @Query("SELECT * from room_control_table WHERE roomId = :key")
     fun getRoom(key: Long): RoomControl?
 
-    @Query("SELECT * from room_control_table ORDER BY roomName DESC")
+    @Query("SELECT * from room_control_table ORDER BY roomName ASC")
     fun getAllRooms(): LiveData<List<RoomControl>>
 
     @Query("SELECT * FROM room_control_table ORDER BY roomId DESC LIMIT 1")

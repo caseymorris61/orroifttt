@@ -7,7 +7,6 @@ import com.caseytmorris.orroifttt.database.RoomDatabaseDao
 
 class SwitchControlViewModelFactory (
     private val roomControlDatabase: RoomDatabaseDao,
-//    private val apiDatabase: WebhookApiKeyDatabaseDao,
     private val application:Application): ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")

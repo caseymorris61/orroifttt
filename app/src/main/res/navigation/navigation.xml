@@ -18,6 +18,10 @@
         android:id="@+id/switchAddRoomFragment"
         android:name="com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomFragment"
         android:label="@string/switch_add_room_fragment"
-        tools:layout="@layout/fragment_switch_add_room" > </fragment>
+        tools:layout="@layout/fragment_switch_add_room" >
+        <action
+            android:id="@+id/action_switchAddRoomFragment_to_switchControlFragment"
+            app:destination="@id/switchControlFragment" />
+    </fragment>
 
 </navigation>

@@ -2,8 +2,11 @@ package com.caseytmorris.orroifttt.switchaddroom
 
 import android.app.Application
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.database.RoomDatabaseDao
 import kotlinx.coroutines.*
@@ -19,16 +22,18 @@ class SwitchAddRoomViewModel  (
     val turnOnKey = MutableLiveData<String>()
     val turnOffKey = MutableLiveData<String>()
 
-    fun onSubmitClicked() {
+    fun onSubmitClicked(view: View) {
         uiScope.launch {
-            //log for testing
-            Log.i("Casey","Add new room submitted")
-            Log.i("Casey","${roomName.value}")
-            Log.i("Casey","${turnOnKey.value}")
-            Log.i("Casey","${turnOffKey.value}")
             //insert the room
+            val rc = RoomControl()
+            rc.roomName = roomName?.value ?: "invalid"
+            rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
+            rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
+            insertRoom(rc)
 
             //navigate back
+            view.findNavController().navigate(R.id.action_switchAddRoomFragment_to_switchControlFragment)
+
         }
     }
 
