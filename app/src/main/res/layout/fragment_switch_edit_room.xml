@@ -106,7 +106,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.webhookApiKeyLiveData}"
+                android:text="@={viewModel._webhookApiKeyLiveData}"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,9 +119,20 @@
             android:layout_marginEnd="16dp"
             android:text="@string/save_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editRoom_webhook"
             android:onClick="@{(view) -> viewModel.onSaveClicked(view)}"/>
+
+        <Button
+            android:id="@+id/validate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Validate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editRoom_webhook"
+            android:onClick="@{(view) -> viewModel.onValidateClicked(view)}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
