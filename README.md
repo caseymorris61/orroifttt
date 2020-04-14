@@ -5,7 +5,11 @@ This is an Android app that allows the user to control their [Orro](https://geto
 ## Overview
 The app allows users to control all of their Orro lights (and potentially across numerous Orro accounts), all from one app. It should have a similar look and feel as the official Orro mobile app, but requires minimal setup of IFTTT to get started. Below are some screenshots of the various app pages.
 
-![](readmeImages/OrrIFTTT_control.png)
+<p>
+<img src="readmeImages/OrrIFTTT_control.png" width="200" height="400"/>   
+<img src="readmeImages/OrrIFTTT_add.png" width="200" height="400"/>   
+<img src="readmeImages/OrrIFTTT_edit.png" width="200" height="400"/>
+</p>
 
 ## Setup
 
