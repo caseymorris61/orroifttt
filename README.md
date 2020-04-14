@@ -7,8 +7,8 @@ The app allows users to control all of their Orro lights (and potentially across
 
 <p>
   <img src="readmeImages/OrrIFTTT_control_empty.png" width="200" height="400"/>   
-  <img src="readmeImages/OrrIFTTT_control.png" width="200" height="400"/>   
-  <img src="readmeImages/OrrIFTTT_add.png" width="200" height="400"/>   
+  <img src="readmeImages/OrrIFTTT_add.png" width="200" height="400"/>  
+  <img src="readmeImages/OrrIFTTT_control.png" width="200" height="400"/>    
   <img src="readmeImages/OrrIFTTT_edit.png" width="200" height="400"/>
 </p>
 
