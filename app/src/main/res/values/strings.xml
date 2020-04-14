@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">Orro IFTTT</string>
-    <string name="turn_on_webhook">turn_on</string>
-    <string name="turn_off_webhook">turn_off</string>
-    <string name="set_webhook">set</string>
-
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="switch_control_fragment">Light For Your Life</string>
+    <string name="title_for_fragments">LIGHT FOR YOUR LIFE</string>
     <string name="switch_add_room_fragment">Add Room</string>
 
     <string name="preference_file_key">preference_file_key_webhook</string>

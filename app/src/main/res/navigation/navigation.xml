@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/switchControlFragment"
         android:name="com.caseytmorris.orroifttt.switchcontrol.SwitchControl"
-        android:label="@string/switch_control_fragment"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_control" >
         <action
             android:id="@+id/action_switch_control_fragment_to_switchAddRoomFragment"
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/switchAddRoomFragment"
         android:name="com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomFragment"
-        android:label="@string/switch_add_room_fragment"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_add_room" >
         <action
             android:id="@+id/action_switchAddRoomFragment_to_switchControlFragment"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/switchEditRoomFragment"
         android:name="com.caseytmorris.orroifttt.switcheditroom.SwitchEditRoomFragment"
-        android:label="@string/switch_edit_room_fragment_title"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_edit_room" >
         <argument
             android:name="roomControlIdKey"
