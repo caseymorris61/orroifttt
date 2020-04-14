@@ -27,7 +27,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:onClick="@{() -> clickListener.onClick(room)}">
 
             <TextView
                 android:id="@+id/room_name"
@@ -52,8 +53,7 @@
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                card_view:srcCompat="@drawable/ic_arrow_forward"
-                android:onClick="@{() -> clickListener.onClick(room)}"/>
+                card_view:srcCompat="@drawable/ic_arrow_forward" />
 
             <Button
                 android:id="@+id/button_turn_on_list"
