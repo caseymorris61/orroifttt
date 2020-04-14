@@ -1,6 +1,7 @@
 package com.caseytmorris.orroifttt.switchcontrol
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
@@ -42,12 +44,18 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
 
         fun bind(clickListener: RoomControlListener,item: RoomControl) {
             roomName.text = item.roomName
+            onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+            offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             onButton.setOnClickListener {
                 sendIFTTTRequest(item.turnOnWebhook, item.webhookApiKey, it.context)
+                it.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
+                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             }
 
             offButton.setOnClickListener {
                 sendIFTTTRequest(item.turnOffWebhook, item.webhookApiKey, it.context)
+                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
+                onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             }
             binding.room = item
             binding.clickListener = clickListener

@@ -10,8 +10,8 @@
     <string name="default_webhook_api_key">default-webhook-key</string>
     <string name="add_new_room_title_string">Add New Room</string>
     <string name="add_room_name_hint">Room Name</string>
-    <string name="add_turn_on_key_hint">Turn On Key</string>
-    <string name="add_turn_off_key_hint">Turn Off Key</string>
+    <string name="add_turn_on_key_hint">Turn On Endpoint</string>
+    <string name="add_turn_off_key_hint">Turn Off Endpoint</string>
     <string name="add_webhook_key_hint">Webhook API Key</string>
     <string name="add_room_submit_button_text">Add Room</string>
     <string name="controls_list_header_text">Home</string>
