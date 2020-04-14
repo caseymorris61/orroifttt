@@ -20,4 +20,5 @@
     <string name="switch_edit_room_fragment_title">Edit Room</string>
     <string name="edit_room_title_string">Edit Room</string>
     <string name="save_text">Save</string>
+    <string name="validate_string">Validate</string>
 </resources>
