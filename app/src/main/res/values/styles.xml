@@ -17,10 +17,7 @@
     <style name="CardButton" parent="TextAppearance.MaterialComponents.Button">
         <item name="android:textSize">12sp</item>
         <item name="android:minWidth">48dp</item>
-    </style>
-
-    <style name="RoomEditText" parent="Widget.AppCompat.EditText">
-
+        <item name="android:backgroundTint">@color/primaryLightColor</item>
     </style>
 
 </resources>
