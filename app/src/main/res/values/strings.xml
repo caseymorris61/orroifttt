@@ -6,7 +6,7 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="switch_control_fragment">Orro IFTTT Control</string>
+    <string name="switch_control_fragment">Light For Your Life</string>
     <string name="switch_add_room_fragment">Add Room</string>
 
     <string name="preference_file_key">preference_file_key_webhook</string>
@@ -18,9 +18,9 @@
     <string name="add_turn_off_key_hint">Turn Off Key</string>
     <string name="add_webhook_key_hint">Webhook API Key</string>
     <string name="add_room_submit_button_text">Add Room</string>
-    <string name="controls_list_header_text">Smart Lighting Room Controls</string>
-    <string name="turn_on_button_text">Turn On</string>
-    <string name="turn_off_button_text">Turn Off</string>
+    <string name="controls_list_header_text">Home</string>
+    <string name="turn_on_button_text">On</string>
+    <string name="turn_off_button_text">Off</string>
     <string name="switch_edit_room_fragment_title">Edit Room</string>
     <string name="edit_room_title_string">Edit Room</string>
     <string name="save_text">Save</string>
