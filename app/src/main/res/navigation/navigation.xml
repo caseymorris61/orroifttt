@@ -8,35 +8,51 @@
     <fragment
         android:id="@+id/switchControlFragment"
         android:name="com.caseytmorris.orroifttt.switchcontrol.SwitchControl"
-        android:label="@string/switch_control_fragment"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_control" >
         <action
             android:id="@+id/action_switch_control_fragment_to_switchAddRoomFragment"
-            app:destination="@id/switchAddRoomFragment" />
+            app:destination="@id/switchAddRoomFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_switchControlFragment_to_switchEditRoomFragment"
-            app:destination="@id/switchEditRoomFragment" />
+            app:destination="@id/switchEditRoomFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/switchAddRoomFragment"
         android:name="com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomFragment"
-        android:label="@string/switch_add_room_fragment"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_add_room" >
         <action
             android:id="@+id/action_switchAddRoomFragment_to_switchControlFragment"
-            app:destination="@id/switchControlFragment" />
+            app:destination="@id/switchControlFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/switchEditRoomFragment"
         android:name="com.caseytmorris.orroifttt.switcheditroom.SwitchEditRoomFragment"
-        android:label="@string/switch_edit_room_fragment_title"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_switch_edit_room" >
         <argument
             android:name="roomControlIdKey"
             app:argType="long" />
         <action
             android:id="@+id/action_switchEditRoomFragment_to_switchControlFragment"
-            app:destination="@id/switchControlFragment" />
+            app:destination="@id/switchControlFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
 </navigation>

@@ -2,8 +2,6 @@ package com.caseytmorris.orroifttt.switcheditroom
 
 import android.app.Application
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
@@ -26,7 +24,7 @@ class SwitchEditRoomViewModel (
             roomName.value = rc.roomName
             turnOnKey.value = rc.turnOnWebhook
             turnOffKey.value = rc.turnOffWebhook
-            webhookApiKeyLiveData.value = rc.webhookApiKey
+            _webhookApiKeyLiveData.value = rc.webhookApiKey
         }
     }
 
@@ -36,7 +34,7 @@ class SwitchEditRoomViewModel (
             rc.roomName = roomName?.value ?: "invalid"
             rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
-            rc.webhookApiKey = webhookApiKeyLiveData?.value ?: defaultStringApiKey
+            rc.webhookApiKey = _webhookApiKeyLiveData?.value ?: defaultStringApiKey
             updateRoom(rc)
 
             //navigate back

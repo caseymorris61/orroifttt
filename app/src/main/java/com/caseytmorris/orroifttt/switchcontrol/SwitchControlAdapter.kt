@@ -3,25 +3,19 @@ package com.caseytmorris.orroifttt.switchcontrol
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.databinding.ListItemRoomControlBinding
+import com.caseytmorris.orroifttt.sendIFTTTLightingRequest
 
 class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
 
@@ -42,12 +36,18 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
 
         fun bind(clickListener: RoomControlListener,item: RoomControl) {
             roomName.text = item.roomName
+            onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+            offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             onButton.setOnClickListener {
-                sendIFTTTRequest(item.turnOnWebhook, item.webhookApiKey, it.context)
+                sendIFTTTLightingRequest(item.turnOnWebhook, item.webhookApiKey,it.context)
+                it.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
+                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             }
 
             offButton.setOnClickListener {
-                sendIFTTTRequest(item.turnOffWebhook, item.webhookApiKey, it.context)
+                sendIFTTTLightingRequest(item.turnOffWebhook, item.webhookApiKey,it.context)
+                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
+                onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
             }
             binding.room = item
             binding.clickListener = clickListener
@@ -61,30 +61,6 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
                 val binding = ListItemRoomControlBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
-        }
-
-        private fun sendIFTTTRequest(event: String, webhookKey: String, context: Context){
-            val queue = Volley.newRequestQueue(context)
-            val url = "https://maker.ifttt.com/trigger/$event/with/key/$webhookKey"
-
-            // Request a string response from the provided URL.
-            val stringRequest = StringRequest(
-                Request.Method.POST, url,
-                Response.Listener<String> { response ->
-                    // Display the first 500 characters of the response string.
-                    Toast.makeText(context,"Success! Lighting action in progress!",
-                        Toast.LENGTH_SHORT).show()
-                },
-                Response.ErrorListener {
-                    Toast.makeText(context,"Error Processing Lighting Request!",
-                        Toast.LENGTH_SHORT).show()
-                }
-            )
-
-            Log.i("sendIFTTTRequest",  "Casey IFTTT URL: $url")
-
-            // Add the request to the RequestQueue.
-            queue.add(stringRequest)
         }
     }
 

@@ -1,12 +1,8 @@
 <resources>
-    <string name="app_name">Orro IFTTT</string>
-    <string name="turn_on_webhook">turn_on</string>
-    <string name="turn_off_webhook">turn_off</string>
-    <string name="set_webhook">set</string>
-
+    <string name="app_name">OrrIFTTT</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="switch_control_fragment">Orro IFTTT Control</string>
+    <string name="title_for_fragments">LIGHT FOR YOUR LIFE</string>
     <string name="switch_add_room_fragment">Add Room</string>
 
     <string name="preference_file_key">preference_file_key_webhook</string>
@@ -14,14 +10,16 @@
     <string name="default_webhook_api_key">default-webhook-key</string>
     <string name="add_new_room_title_string">Add New Room</string>
     <string name="add_room_name_hint">Room Name</string>
-    <string name="add_turn_on_key_hint">Turn On Key</string>
-    <string name="add_turn_off_key_hint">Turn Off Key</string>
+    <string name="add_turn_on_key_hint">Turn On Endpoint</string>
+    <string name="add_turn_off_key_hint">Turn Off Endpoint</string>
     <string name="add_webhook_key_hint">Webhook API Key</string>
     <string name="add_room_submit_button_text">Add Room</string>
-    <string name="controls_list_header_text">Smart Lighting Room Controls</string>
-    <string name="turn_on_button_text">Turn On</string>
-    <string name="turn_off_button_text">Turn Off</string>
+    <string name="controls_list_header_text">Home</string>
+    <string name="turn_on_button_text">On</string>
+    <string name="turn_off_button_text">Off</string>
     <string name="switch_edit_room_fragment_title">Edit Room</string>
     <string name="edit_room_title_string">Edit Room</string>
     <string name="save_text">Save</string>
+    <string name="validate_string">Validate</string>
+    <string name="configure_home_string">Get started by creating IFTTT Applets using Webhooks and Orro!</string>
 </resources>
