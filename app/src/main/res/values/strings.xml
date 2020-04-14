@@ -21,4 +21,5 @@
     <string name="edit_room_title_string">Edit Room</string>
     <string name="save_text">Save</string>
     <string name="validate_string">Validate</string>
+    <string name="configure_home_string">Get started by creating IFTTT Applets using Webhooks and Orro!</string>
 </resources>

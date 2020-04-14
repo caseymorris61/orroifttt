@@ -42,6 +42,20 @@
                     tools:text="@string/controls_list_header_text" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/empty_list_text"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="32dp"
+                android:text="@string/configure_home_string"
+                android:textAlignment="center"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/id_home_header" />
+
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nested_scroll_view"
                 android:layout_width="match_parent"
@@ -70,10 +84,6 @@
                         app:layout_constraintVertical_bias="0.0"
                         tools:listitem="@layout/list_item_room_control"
                         android:overScrollMode="always"/>
-
-                    <!-- With data binding and LiveData, we can track the buttons' visibility states
-                         from the ViewModel. The click handler is in the ViewModel as well, and
-                         you can set it for the Views using this lambda pattern. -->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
