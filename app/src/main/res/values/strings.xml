@@ -21,4 +21,7 @@
     <string name="controls_list_header_text">Smart Lighting Room Controls</string>
     <string name="turn_on_button_text">Turn On</string>
     <string name="turn_off_button_text">Turn Off</string>
+    <string name="switch_edit_room_fragment_title">Edit Room</string>
+    <string name="edit_room_title_string">Edit Room</string>
+    <string name="save_text">Save</string>
 </resources>
