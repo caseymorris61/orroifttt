@@ -82,15 +82,16 @@ class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val r
     }
 
     fun sliderValueSet(view: View, level: Int){
-        Log.i("Casey","Setting Level to $level based on slider")
-        sendIFTTTLightingRequest(room.turnOffWebhook, room.webhookApiKey,view.context, level)
+        sendIFTTTLightingRequest(room.setWebhook, room.webhookApiKey,view.context, level)
         binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
         binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
 
     }
 
     override fun onStartTrackingTouch(slider: Slider) {
-        //Nothing to do for now
+        //Assume lights are being turned on or are already on
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
     }
 
     override fun onStopTrackingTouch(slider: Slider) {

@@ -24,6 +24,7 @@ open class SwitchViewModel(application: Application) : AndroidViewModel(applicat
     val roomName = MutableLiveData<String>()
     val turnOnKey = MutableLiveData<String>()
     val turnOffKey = MutableLiveData<String>()
+    val setLevelKey = MutableLiveData<String>()
 
     val _webhookApiKeyLiveData = MutableLiveData<String>()
     val webhookApiKeyLiveData : LiveData<String>
@@ -104,6 +105,7 @@ class SwitchAddRoomViewModel  (
             rc.roomName = roomName?.value ?: "invalid"
             rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
+            rc.setWebhook = setLevelKey?.value ?: "invalid"
             rc.webhookApiKey = _webhookApiKeyLiveData?.value ?: defaultStringApiKey
             insertRoom(rc)
 

@@ -24,6 +24,7 @@ class SwitchEditRoomViewModel (
             roomName.value = rc.roomName
             turnOnKey.value = rc.turnOnWebhook
             turnOffKey.value = rc.turnOffWebhook
+            setLevelKey.value = rc.setWebhook
             _webhookApiKeyLiveData.value = rc.webhookApiKey
         }
     }
@@ -35,6 +36,7 @@ class SwitchEditRoomViewModel (
             rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
             rc.webhookApiKey = _webhookApiKeyLiveData?.value ?: defaultStringApiKey
+            rc.setWebhook = setLevelKey?.value ?: "invalid"
             updateRoom(rc)
 
             //navigate back
