@@ -17,17 +17,29 @@
             android:layout_height="match_parent"
             tools:context=".switcheditroom.SwitchEditRoomFragment">
 
-            <!-- TODO: Update blank fragment layout -->
             <TextView
                 android:id="@+id/edit_room_title"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/edit_room_title_string"
-                style="@style/TextAppearance.MaterialComponents.Headline4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/delete_room_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primaryLightColor"
+                android:layout_marginEnd="16dp"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_room_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_delete_icon"
+                android:onClick="@{(view)->viewModel.onDeleteClicked(view)}"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editRoom_roomname"
@@ -94,6 +106,27 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editRoom_set_dim_level_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="text"
+                android:hint="@string/set_dimming_level_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintTop_toBottomOf="@id/editRoom_turnoff_key" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.setLevelKey}"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editRoom_webhook"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +139,7 @@
                 android:hint="@string/add_webhook_key_hint"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editRoom_turnoff_key" >
+                app:layout_constraintTop_toBottomOf="@id/editRoom_set_dim_level_key" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -138,6 +171,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editRoom_webhook"
                 android:onClick="@{(view) -> viewModel.onValidateClicked(view)}"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

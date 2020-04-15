@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControlDatabase
 import com.caseytmorris.orroifttt.databinding.FragmentSwitchControlBinding
@@ -46,24 +44,6 @@ class SwitchControl : Fragment() {
         })
 
         binding.roomList.adapter = adapter
-
-        val swipeHandler = object : SwipeToDeleteCallback(application.applicationContext) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val vh = viewHolder as SwitchControlAdapter.ViewHolder
-                binding.viewModel?.deleteRoom(vh.getRoom())
-            }
-        }
-
-        val itemTouchHelper = ItemTouchHelper(swipeHandler)
-        itemTouchHelper.attachToRecyclerView(binding.roomList)
 
         switchControlViewModel.rooms.observe(viewLifecycleOwner, Observer {
             it?.let {
