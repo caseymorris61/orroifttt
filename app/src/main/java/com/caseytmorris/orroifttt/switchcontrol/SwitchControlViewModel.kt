@@ -36,19 +36,6 @@ class SwitchControlViewModel (
         }
     }
 
-    private suspend fun delete(room: RoomControl){
-        withContext(Dispatchers.IO) {
-            roomControlDatabase.deleteRoom(room)
-        }
-    }
-
-    fun deleteRoom(room: RoomControl) {
-        uiScope.launch {
-            Log.i("Casey","Want to remove room name ${room.roomName}")
-            delete(room)
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
