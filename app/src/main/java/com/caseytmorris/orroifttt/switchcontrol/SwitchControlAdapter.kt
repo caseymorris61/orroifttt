@@ -1,9 +1,12 @@
 package com.caseytmorris.orroifttt.switchcontrol
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
@@ -16,6 +19,7 @@ import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.databinding.ListItemRoomControlBinding
 import com.caseytmorris.orroifttt.sendIFTTTLightingRequest
+import com.google.android.material.slider.Slider
 
 class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
 
@@ -30,25 +34,19 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
     }
 
     class ViewHolder private constructor(val binding: ListItemRoomControlBinding): RecyclerView.ViewHolder(binding.root) {
-        val roomName: TextView = itemView.findViewById(R.id.room_name)
-        val onButton: Button = itemView.findViewById(R.id.button_turn_on_list)
-        val offButton: Button = itemView.findViewById(R.id.button_turn_off_list)
+
+        private lateinit var lightChangeListener : LightLevelSliderBarListener
 
         fun bind(clickListener: RoomControlListener,item: RoomControl) {
-            roomName.text = item.roomName
-            onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
-            offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
-            onButton.setOnClickListener {
-                sendIFTTTLightingRequest(item.turnOnWebhook, item.webhookApiKey,it.context)
-                it.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
-                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
-            }
+            lightChangeListener = LightLevelSliderBarListener(binding,item)
+            binding.roomName.text = item.roomName
+            binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+            binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
 
-            offButton.setOnClickListener {
-                sendIFTTTLightingRequest(item.turnOffWebhook, item.webhookApiKey,it.context)
-                offButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
-                onButton.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
-            }
+            binding.buttonTurnOnList.setOnClickListener {lightChangeListener.onButtonClickListener(it) }
+            binding.buttonTurnOffList.setOnClickListener {lightChangeListener.offButtonClickListener(it)}
+            binding.seekBar.addOnSliderTouchListener(lightChangeListener)
+
             binding.room = item
             binding.clickListener = clickListener
         }
@@ -65,6 +63,43 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
     }
 
 
+}
+
+class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val room: RoomControl) : Slider.OnSliderTouchListener {
+
+    fun onButtonClickListener(view: View){
+        sendIFTTTLightingRequest(room.turnOnWebhook, room.webhookApiKey,view.context, 200)
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.seekBar.value = 100F
+    }
+
+    fun offButtonClickListener(view: View){
+        sendIFTTTLightingRequest(room.turnOffWebhook, room.webhookApiKey,view.context, 0)
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.seekBar.value = 0F
+    }
+
+    fun sliderValueSet(view: View, level: Int){
+        Log.i("Casey","Setting Level to $level based on slider")
+        sendIFTTTLightingRequest(room.turnOffWebhook, room.webhookApiKey,view.context, level)
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
+
+    }
+
+    override fun onStartTrackingTouch(slider: Slider) {
+        //Nothing to do for now
+    }
+
+    override fun onStopTrackingTouch(slider: Slider) {
+        when {
+            (slider.value) < 1 -> { offButtonClickListener(slider) }
+            (slider.value) > 99 -> { onButtonClickListener(slider) }
+            else -> {sliderValueSet(slider, slider.value.toInt())}
+        }
+    }
 }
 
 class SwitchControlDiffCallback : DiffUtil.ItemCallback<RoomControl>() {

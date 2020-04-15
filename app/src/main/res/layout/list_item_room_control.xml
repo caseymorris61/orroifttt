@@ -81,6 +81,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_icon" />
 
 
+            <com.google.android.material.slider.Slider
+                android:id="@+id/seekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:value="0"
+                android:valueFrom="0"
+                android:valueTo="100"
+                app:haloColor="@color/secondaryDarkColor"
+                app:labelBehavior="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_turn_on_list"
+                app:layout_constraintStart_toEndOf="@+id/button_turn_off_list"
+                app:thumbColor="@color/primaryLightColor"
+                app:trackColorActive="@color/secondaryDarkColor" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
