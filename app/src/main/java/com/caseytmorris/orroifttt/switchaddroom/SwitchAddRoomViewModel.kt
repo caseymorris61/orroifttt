@@ -9,10 +9,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
+import com.caseytmorris.orroifttt.utils.IFTTTRequestSender
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.database.RoomDatabaseDao
-import com.caseytmorris.orroifttt.sendIFTTTRequest
 import kotlinx.coroutines.*
 
 enum class API_KEY_VALIDATION_STATE {UNKNOWN,FAILED,PASS}
@@ -58,9 +58,10 @@ open class SwitchViewModel(application: Application) : AndroidViewModel(applicat
 
     protected suspend fun validateApiKey(key:String, context: Context){
         withContext(Dispatchers.IO) {
-            sendIFTTTRequest("testtesttest",key,context) { response ->
-                processIFTTTValidationResponse(response)
-            }
+            IFTTTRequestSender.getInstance(context)
+                .sendIFTTTRequest("testtesttest",key){ response ->
+                    processIFTTTValidationResponse(response)
+                }
         }
     }
 

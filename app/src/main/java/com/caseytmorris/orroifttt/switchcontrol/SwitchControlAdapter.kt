@@ -3,13 +3,14 @@ package com.caseytmorris.orroifttt.switchcontrol
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.caseytmorris.orroifttt.utils.IFTTTRequestSender
 import com.caseytmorris.orroifttt.R
 import com.caseytmorris.orroifttt.database.RoomControl
 import com.caseytmorris.orroifttt.databinding.ListItemRoomControlBinding
-import com.caseytmorris.orroifttt.sendIFTTTLightingRequest
 import com.google.android.material.slider.Slider
 
 class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
@@ -58,24 +59,46 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
 class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val room: RoomControl) : Slider.OnSliderTouchListener {
 
     fun onButtonClickListener(view: View){
-        sendIFTTTLightingRequest(room.turnOnWebhook, room.webhookApiKey,view.context, 200)
+        sendIFTTTLightingRequest(view,room.turnOnWebhook,100)
         binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
         binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
         binding.seekBar.value = 100F
     }
 
     fun offButtonClickListener(view: View){
-        sendIFTTTLightingRequest(room.turnOffWebhook, room.webhookApiKey,view.context, 0)
+        sendIFTTTLightingRequest(view,room.turnOffWebhook,0)
         binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
         binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
         binding.seekBar.value = 0F
     }
 
-    fun sliderValueSet(view: View, level: Int){
-        sendIFTTTLightingRequest(room.setWebhook, room.webhookApiKey,view.context, level)
+    private fun sliderValueSet(view: View, level: Int){
+        sendIFTTTLightingRequest(view,room.setWebhook,level)
         binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
         binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
 
+    }
+
+    private fun processLightingChangeResponse(result: Boolean){
+        when (result) {
+            true -> {
+                Toast.makeText(
+                    binding.root.context, "Success! Lighting action in progress!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            else -> {
+                Toast.makeText(
+                    binding.root.context, "Error Processing Lighting Request!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun sendIFTTTLightingRequest(view: View,webhook:String,level: Int){
+        IFTTTRequestSender.getInstance(view.context)
+            .sendIFTTTRequest(webhook, room.webhookApiKey, level){processLightingChangeResponse(it)}
     }
 
     override fun onStartTrackingTouch(slider: Slider) {
