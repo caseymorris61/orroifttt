@@ -29,10 +29,10 @@ For each switch, you need to make 3 applets, 1 for on, 1 for off, and 1 to set a
 7. Search for and select "Orro", "Hue", or other compatible lighting services
 8. Select the appropriate action (Turn ON, Turn OFF, or SET)
 9. Select which of your switches it should control 
-    * When doing set, click the "Add Ingredient" button and select "Value1"
+    * When doing SET, click the "Add Ingredient" button and select "Value1"
 10. Select "Create Action"
 11. Review your event and select "Finish"
-12. Optional: You can test you new event from the Webhooks Documentation page and ensure it performs the desired action
+12. Optional: You can test your new event from the Webhooks Documentation page and ensure it performs the desired action
 
 ## Add Rooms
 Once you have created 3 applets (for turn on, turn off, and set level of a switch), you can use the event names and the webhook api key to add the control to the OrrIFTTT App!
