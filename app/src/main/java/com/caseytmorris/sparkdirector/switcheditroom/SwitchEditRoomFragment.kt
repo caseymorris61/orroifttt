@@ -1,8 +1,7 @@
-package com.caseytmorris.orroifttt.switcheditroom
+package com.caseytmorris.sparkdirector.switcheditroom
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +10,10 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControlDatabase
-import com.caseytmorris.orroifttt.databinding.FragmentSwitchEditRoomBinding
-import com.caseytmorris.orroifttt.switchaddroom.API_KEY_VALIDATION_STATE
-import com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomViewModel
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControlDatabase
+import com.caseytmorris.sparkdirector.databinding.FragmentSwitchEditRoomBinding
+import com.caseytmorris.sparkdirector.switchaddroom.API_KEY_VALIDATION_STATE
 
 /**
  * A simple [Fragment] subclass.

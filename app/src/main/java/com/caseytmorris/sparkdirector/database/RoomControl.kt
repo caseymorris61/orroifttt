@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.database
+package com.caseytmorris.sparkdirector.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

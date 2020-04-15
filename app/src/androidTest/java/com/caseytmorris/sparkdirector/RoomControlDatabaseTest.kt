@@ -1,11 +1,11 @@
-package com.caseytmorris.orroifttt
+package com.caseytmorris.sparkdirector
 
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.caseytmorris.orroifttt.database.RoomControl
-import com.caseytmorris.orroifttt.database.RoomControlDatabase
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.database.RoomControlDatabase
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before

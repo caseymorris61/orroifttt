@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.switchcontrol
+package com.caseytmorris.sparkdirector.switchcontrol
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControlDatabase
-import com.caseytmorris.orroifttt.databinding.FragmentSwitchControlBinding
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControlDatabase
+import com.caseytmorris.sparkdirector.databinding.FragmentSwitchControlBinding
 
 
 class SwitchControl : Fragment() {

@@ -1,12 +1,12 @@
-package com.caseytmorris.orroifttt.switchcontrol
+package com.caseytmorris.sparkdirector.switchcontrol
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.caseytmorris.orroifttt.database.RoomControl
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 
 class SwitchControlViewModel (
     val roomControlDatabase: RoomDatabaseDao,

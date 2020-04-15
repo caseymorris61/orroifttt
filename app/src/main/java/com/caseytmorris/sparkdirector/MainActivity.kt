@@ -1,11 +1,11 @@
-package com.caseytmorris.orroifttt
+package com.caseytmorris.sparkdirector
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.caseytmorris.orroifttt.databinding.ActivityMainBinding
+import com.caseytmorris.sparkdirector.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

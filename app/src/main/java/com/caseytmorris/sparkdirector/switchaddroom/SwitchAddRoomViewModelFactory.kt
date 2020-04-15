@@ -1,18 +1,18 @@
-package com.caseytmorris.orroifttt.switchcontrol
+package com.caseytmorris.sparkdirector.switchaddroom
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 
-class SwitchControlViewModelFactory (
+class SwitchAddRoomViewModelFactory (
     private val roomControlDatabase: RoomDatabaseDao,
     private val application:Application): ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SwitchControlViewModel::class.java)) {
-            return SwitchControlViewModel(roomControlDatabase, application) as T
+        if (modelClass.isAssignableFrom(SwitchAddRoomViewModel::class.java)) {
+            return SwitchAddRoomViewModel(roomControlDatabase, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

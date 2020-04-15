@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.utils
+package com.caseytmorris.sparkdirector.utils
 
 import android.content.Context
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.switcheditroom
+package com.caseytmorris.sparkdirector.switcheditroom
 
 import android.app.AlertDialog
 import android.app.Application
@@ -7,10 +7,10 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat.getColor
 import androidx.navigation.findNavController
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControl
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
-import com.caseytmorris.orroifttt.switchaddroom.SwitchViewModel
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.switchaddroom.SwitchViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

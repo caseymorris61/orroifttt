@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.switchaddroom
+package com.caseytmorris.sparkdirector.switchaddroom
 
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControlDatabase
-import com.caseytmorris.orroifttt.databinding.FragmentSwitchAddRoomBinding
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControlDatabase
+import com.caseytmorris.sparkdirector.databinding.FragmentSwitchAddRoomBinding
 
 
 class SwitchAddRoomFragment : Fragment() {

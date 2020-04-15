@@ -1,9 +1,9 @@
-package com.caseytmorris.orroifttt.switcheditroom
+package com.caseytmorris.sparkdirector.switcheditroom
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 
 class SwitchEditRoomViewModelFactory (
     private val roomControlId: Long,

@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.switchcontrol
+package com.caseytmorris.sparkdirector.switchcontrol
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.caseytmorris.orroifttt.utils.IFTTTRequestSender
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControl
-import com.caseytmorris.orroifttt.databinding.ListItemRoomControlBinding
+import com.caseytmorris.sparkdirector.utils.IFTTTRequestSender
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.databinding.ListItemRoomControlBinding
 import com.google.android.material.slider.Slider
 
 class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {

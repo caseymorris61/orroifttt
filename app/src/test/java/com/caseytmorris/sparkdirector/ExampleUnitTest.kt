@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt
+package com.caseytmorris.sparkdirector
 
 import org.junit.Test
 

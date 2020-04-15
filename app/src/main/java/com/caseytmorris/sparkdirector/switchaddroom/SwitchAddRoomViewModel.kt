@@ -1,4 +1,4 @@
-package com.caseytmorris.orroifttt.switchaddroom
+package com.caseytmorris.sparkdirector.switchaddroom
 
 import android.app.Application
 import android.content.Context
@@ -9,10 +9,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
-import com.caseytmorris.orroifttt.utils.IFTTTRequestSender
-import com.caseytmorris.orroifttt.R
-import com.caseytmorris.orroifttt.database.RoomControl
-import com.caseytmorris.orroifttt.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.utils.IFTTTRequestSender
+import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 import kotlinx.coroutines.*
 
 enum class API_KEY_VALIDATION_STATE {UNKNOWN,FAILED,PASS}
