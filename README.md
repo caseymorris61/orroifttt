@@ -1,13 +1,13 @@
-# OrrIFTTT
+# Spark Director
 
 ## Overview
-The app allows users to control all of their smart lights (across multiple vendors and accounts), all from one app. The app does require minimal setup of IFTTT to get started, but once setup, provides a simple and intuitive user interface to control the lights. Below are some screenshots of the various app pages.
+The app allows users to control all of their smart lights (across multiple vendors and accounts), all from one app. The app does require minimal setup of IFTTT to get started, but once setup, provides a simple and intuitive user interface to control different smart lights in the same way. Below are some screenshots of the various app pages.
 
 <p>
-  <img src="readmeImages/OrrIFTTT_control_empty.png" width="200" height="400"/>   
-  <img src="readmeImages/OrrIFTTT_add.png" width="200" height="400"/>  
-  <img src="readmeImages/OrrIFTTT_control.png" width="200" height="400"/>    
-  <img src="readmeImages/OrrIFTTT_edit.png" width="200" height="400"/>
+  <img src="readmeImages/SparkDirector_control_empty.png" width="200" height="400"/>   
+  <img src="readmeImages/SparkDirector_add.png" width="200" height="400"/>  
+  <img src="readmeImages/SparkDirector_control.png" width="200" height="400"/>    
+  <img src="readmeImages/SparkDirector_edit.png" width="200" height="400"/>
 </p>
 
 ## Setup
@@ -35,9 +35,9 @@ For each switch, you need to make 3 applets, 1 for on, 1 for off, and 1 to set a
 12. Optional: You can test your new event from the Webhooks Documentation page and ensure it performs the desired action
 
 ## Add Rooms
-Once you have created 3 applets (for turn on, turn off, and set level of a switch), you can use the event names and the webhook api key to add the control to the OrrIFTTT App!
+Once you have created 3 applets (for turn on, turn off, and set level of a switch), you can use the event names and the webhook api key to add the control to the Spark Director App!
 
-1. On the home page of the OrrIFTTT app, tap the "+" icon on the bottom of the screen.
+1. On the home page of the Spark Director app, tap the "+" icon on the bottom of the screen.
 2. Enter a room name, e.g. "Living Room"
 3. Enter the event name for the turn on action you previously created, e.g. "turn_on_living_room"
 4. Enter the event name for the turn off action you previously created, e.g. "turn_off_living_room"
