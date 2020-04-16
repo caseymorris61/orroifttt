@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/setupFragment"
-        android:title="Setup Instructions" />
+        android:title="@string/room_setup_title" />
 </menu>

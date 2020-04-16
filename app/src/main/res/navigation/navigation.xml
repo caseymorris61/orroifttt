@@ -57,12 +57,12 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.caseytmorris.sparkdirector.menus.AboutFragment"
-        android:label="How It Works"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/setupFragment"
         android:name="com.caseytmorris.sparkdirector.menus.SetupFragment"
-        android:label="fragment_setup"
+        android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_setup" />
 
 </navigation>
