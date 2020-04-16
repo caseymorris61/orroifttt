@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.caseytmorris.orroifttt.switchcontrol.SwitchControlViewModel" />
+            type="com.caseytmorris.sparkdirector.switchcontrol.SwitchControlViewModel" />
     </data>
 
     <!-- Start of the visible fragment layout using ConstraintLayout -->

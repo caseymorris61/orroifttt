@@ -7,10 +7,10 @@
     <data>
         <variable
             name="room"
-            type="com.caseytmorris.orroifttt.database.RoomControl" />
+            type="com.caseytmorris.sparkdirector.database.RoomControl" />
         <variable
             name="clickListener"
-            type="com.caseytmorris.orroifttt.switchcontrol.RoomControlListener" />
+            type="com.caseytmorris.sparkdirector.switchcontrol.RoomControlListener" />
     </data>
 
 

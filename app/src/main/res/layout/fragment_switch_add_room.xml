@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.caseytmorris.orroifttt.switchaddroom.SwitchAddRoomViewModel" />
+            type="com.caseytmorris.sparkdirector.switchaddroom.SwitchAddRoomViewModel" />
     </data>
 
     <ScrollView
