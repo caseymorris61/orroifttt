@@ -13,6 +13,13 @@
 	width: 200px;
 }
 
+.app_screenshot_2
+{
+	border:1px solid #000000;
+	height: 400px;
+	width: 200px;
+}
+
 .web_screenshot
 {
 	margin: 0 auto;
@@ -20,15 +27,20 @@
 	height: 300px;
 }
 
-a.button {
-    appearance: button;
+.button {
+	color: #000000;
     text-decoration: none;
     background-color: #c79a00;
 	border-radius: 56px;
 	border:1px solid #c79a00;
-	color: #000000;
 	font-family: Arial;
 	font-size: 34px;
 	padding: 16px 31px;
-	cursor: pointer;
+	color: black;
+}
+.button:hover {
+	color: black;
+}
+.button:visited {
+	color: black;
 }
