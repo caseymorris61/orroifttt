@@ -27,9 +27,9 @@ permalink:        /blog/:year/:month/:day/:title/
 markdown: kramdown
 
 #theme is used for local testing
-theme: "minimal-mistakes-jekyll"
+#theme: "minimal-mistakes-jekyll"
 #remote theme is for use on github
-#remote_theme: "mmistakes/minimal-mistakes@4.16.6" 
+remote_theme: "mmistakes/minimal-mistakes@4.16.6" 
 
 # Plugins (previously gems:)
 plugins:
