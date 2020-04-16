@@ -54,5 +54,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.caseytmorris.sparkdirector.menus.AboutFragment"
+        android:label="@string/title_for_fragments"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/setupFragment"
+        android:name="com.caseytmorris.sparkdirector.menus.SetupFragment"
+        android:label="@string/title_for_fragments"
+        tools:layout="@layout/fragment_setup" />
 
 </navigation>

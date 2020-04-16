@@ -23,4 +23,15 @@
     <string name="validate_string">Validate</string>
     <string name="configure_home_string">Get started by creating IFTTT Applets using Webhooks and Orro!</string>
     <string name="set_dimming_level_hint">Set Dimming Level Endpoint</string>
+    <string name="room_setup_description_detail_string">To configure a room in the Spark Director app, minimal setup is required to create an IFTTT applet. An applet is the association of a trigger (using the Webhooks service) and an action (i.e. an Orro light switch, Hue smart bulb, etc.).</string>
+    <string name="learn_more_preface_text">More information about Spark Director, compatible services, and more can be found on the Spark Director website.</string>
+    <string name="learn_more_button_text">Learn More</string>
+    <string name="about_body_text_1">Spark Director creates a centralized home for your smart lighting controls, providing a common interface no matter the brand.</string>
+    <string name="about_body_text_2">Spark Director works by sending HTTP requests to specific endpoints. These requests act as triggers to a lighting action, and this is all done through IFTTT.</string>
+    <string name="about_body_text_3">The Webhooks IFTTT service is used to create the enpoints and triggers. These api endpoints and key are all stored locally on the phone, not in the cloud. The endpoint/trigger is then associated with the lighting action and then you are ready to use Spark Director.</string>
+    <string name="how_it_works_label">How It Works</string>
+    <string name="room_setup_title">Room Setup</string>
+    <string name="step_x_step_preface_text">Step by step instructions can be found on the Spark Director website.</string>
+    <string name="get_instructions_label">Get Instructions</string>
+    <string name="setup_instructions_label">Setup Instructions</string>
 </resources>

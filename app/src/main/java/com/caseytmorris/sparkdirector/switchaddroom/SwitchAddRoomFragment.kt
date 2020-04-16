@@ -2,13 +2,13 @@ package com.caseytmorris.sparkdirector.switchaddroom
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.caseytmorris.sparkdirector.R
 import com.caseytmorris.sparkdirector.database.RoomControlDatabase
 import com.caseytmorris.sparkdirector.databinding.FragmentSwitchAddRoomBinding
@@ -59,8 +59,18 @@ class SwitchAddRoomFragment : Fragment() {
 
             }
         })
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item!!,
+            view!!.findNavController())
+                || super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.overflow_menu, menu)
+    }
 }
