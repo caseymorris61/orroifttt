@@ -1,0 +1,34 @@
+.center-image
+{
+	margin: 0 auto;
+	display: block;
+}
+
+.app_screenshot
+{
+	margin: 0 auto;
+	display: block;
+	border:1px solid #000000;
+	height: 400px;
+	width: 200px;
+}
+
+.web_screenshot
+{
+	margin: 0 auto;
+	display: block;
+	height: 300px;
+}
+
+a.button {
+    appearance: button;
+    text-decoration: none;
+    background-color: #c79a00;
+	border-radius: 56px;
+	border:1px solid #c79a00;
+	color: #000000;
+	font-family: Arial;
+	font-size: 34px;
+	padding: 16px 31px;
+	cursor: pointer;
+}
