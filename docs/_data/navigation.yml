@@ -1,0 +1,10 @@
+main:
+  - title: "Configuration"
+    url: "/configuration"
+  - title: "Vendors"
+    url: "/"
+  - title: "About"
+    url: "/"
+  - title: "Support"
+    url: "/"
+

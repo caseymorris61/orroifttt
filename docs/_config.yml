@@ -1,1 +1,99 @@
-theme: jekyll-theme-slate
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: Spark Director
+name: Spark Director
+email: casey@caseytmorris.com
+description: "Centralized Home For Your Smart Lighting Controls"
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "http://caseytmorris.com/" # the base hostname & protocol for your site, e.g. http://example.com
+github_username:  caseymorris61
+
+permalink:        /blog/:year/:month/:day/:title/
+
+# Build settings
+markdown: kramdown
+
+#theme is used for local testing
+theme: "minimal-mistakes-jekyll"
+#remote theme is for use on github
+#remote_theme: "mmistakes/minimal-mistakes@4.16.6" 
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+minimal_mistakes_skin: "default"
+
+# Site Author
+author:
+  name             : *name # *name is a YAML reference pointing to the &anchor earlier
+  # avatar           : "/assets/images/casey-profile.jpg"
+  bio              : "30% done with 47 projects"
+  location         : "Memphis, TN"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:casey@caseytmorris.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/caseymorris61"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/casey-morris-96105346/"
+    
+    
+
+# Site Footer
+footer:
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:casey@caseytmorris.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/caseymorris61"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/casey-morris-96105346/"
+
+      
+
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
