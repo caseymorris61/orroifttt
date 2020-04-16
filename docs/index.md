@@ -17,7 +17,7 @@ excerpt: >
 The app allows users to control all of their smart lights (across multiple vendors and accounts), all from one app. The app does require minimal setup of IFTTT to get started, but once setup, provides a simple and intuitive user interface to control different smart lights in the same way.
 
 
-[Get Started](/setup){: .button }
+[Get Started](/sparkdirector/setup){: .button }
 
 ![app1](/assets/images/SparkDirector_control_empty.png){: .app_screenshot_2} 
 ![app1](/assets/images/SparkDirector_add.png){: .app_screenshot_2} 
