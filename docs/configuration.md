@@ -1,9 +1,9 @@
 ---
 layout: single 
-title:  "Configure IFTTT for Spark Director"
+title:  "Setup Spark Director"
 date:   2020-04-15 21:29:59 -0500
 categories: jekyll update
-permalink: /configuration
+permalink: /setup
 ---
 
 ### Configure IFTTT Services
@@ -46,12 +46,12 @@ Once you have created 3 applets (for turn on, turn off, and set level of a switc
 
 1. On the home page of the Spark Director app, tap the "+" icon on the bottom of the screen.  
 ![app1](/assets/images/SparkDirector_control_empty.png){: .app_screenshot} 
-2. Enter a room name, e.g. "Office"
-3. Enter the event name for the turn on action you previously created, e.g. "turn_on_office"
-4. Enter the event name for the turn off action you previously created, e.g. "turn_off_office"
-4. Enter the event name for the set action you previously created, e.g. "set_office"
+2. Enter a room name, e.g. "Attic Switch"
+3. Enter the event name for the turn on action you previously created, e.g. "turn_on_attic"
+4. Enter the event name for the turn off action you previously created, e.g. "turn_off_attic"
+4. Enter the event name for the set action you previously created, e.g. "set_attic"
 5. Enter the Webhooks API Key from the webhooks documentation page. (Don't worry, you only have to enter this the first time. Will be saved and autopopulated for other rooms).  
-![app4](/assets/images/SparkDirector_edit.png){: .app_screenshot} 
+![app4](/assets/images/SparkDirector_add_filledin.png){: .app_screenshot} 
 6. Select "Validate". This will ensure the Webhok API Key you entered is valid. If so, the "Add Room" button will be enabled
 7. Select "Add Room". The room should now be added to the home page, and the On and Off buttons and the slider should control the light!  
 ![app3](/assets/images/SparkDirector_control.png){: .app_screenshot}
