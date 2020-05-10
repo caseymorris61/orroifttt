@@ -59,7 +59,7 @@ class SwitchEditRoomViewModel (
             rc.setWebhook = setLevelKey?.value ?: "invalid"
             rc.roomUID = roomControlId
             updateRoom(rc)
-            
+
             navBackToControlFragment(view)
         }
     }
