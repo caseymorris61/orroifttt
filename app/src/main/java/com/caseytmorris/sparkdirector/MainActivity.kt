@@ -58,6 +58,9 @@ class MainActivity : AppCompatActivity() {
                     AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setIsSmartLockEnabled(false)
+                        .setTosAndPrivacyPolicyUrls("http://caseytmorris.com/sparkdirector/terms-of-service.html",
+                            "http://caseytmorris.com/sparkdirector/privacy-policy.html")
+                        .setTheme(R.style.AppTheme)
                         .setAvailableProviders(
                             Arrays.asList<AuthUI.IdpConfig>(
                                 AuthUI.IdpConfig.GoogleBuilder().build(),
