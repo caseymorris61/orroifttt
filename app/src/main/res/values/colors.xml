@@ -10,4 +10,6 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="deleteColor">#FF0000</color>
+
+    <color name="fui_bgEmail">@color/secondaryDarkColor</color>
 </resources>

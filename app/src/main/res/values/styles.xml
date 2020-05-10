@@ -20,4 +20,10 @@
         <item name="android:backgroundTint">@color/primaryLightColor</item>
     </style>
 
+    <style name="FirebaseUI.Button.AccountChooser.EmailButton">
+        <item name="drawableStartCompat">@drawable/fui_ic_mail_white_24dp</item>
+        <item name="android:background">@drawable/fui_idp_button_background_email</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
 </resources>

@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                         .setTosAndPrivacyPolicyUrls("http://caseytmorris.com/sparkdirector/terms-of-service.html",
                             "http://caseytmorris.com/sparkdirector/privacy-policy.html")
                         .setTheme(R.style.AppTheme)
+                        .setLogo(R.drawable.ic_launcher_bulb_signin)
                         .setAvailableProviders(
                             Arrays.asList<AuthUI.IdpConfig>(
                                 AuthUI.IdpConfig.GoogleBuilder().build(),
