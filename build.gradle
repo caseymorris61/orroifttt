@@ -21,6 +21,8 @@ buildscript {
         version_recyclerview = "1.1.0-alpha03"
         version_material = "1.2.0-alpha06"
         version_play_services = "16.0.0"
+        version_google_services = "4.3.3"
+        version_firebase_ui = "6.2.1"
     }
 
     repositories {
@@ -31,6 +33,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$version_gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+        classpath "com.google.gms:google-services:$version_google_services"
     }
 }
 

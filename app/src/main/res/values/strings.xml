@@ -34,4 +34,5 @@
     <string name="step_x_step_preface_text">Step by step instructions can be found on the Spark Director website.</string>
     <string name="get_instructions_label">Get Instructions</string>
     <string name="setup_instructions_label">Setup Instructions</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
