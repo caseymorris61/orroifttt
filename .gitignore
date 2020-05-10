@@ -19,5 +19,6 @@
 .DS_Store
 /build
 /captures
+/app/release
 .externalNativeBuild
 **/*/res/values/secrets.xml
