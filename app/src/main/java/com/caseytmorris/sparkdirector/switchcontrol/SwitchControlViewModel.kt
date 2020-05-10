@@ -10,10 +10,7 @@ import com.caseytmorris.sparkdirector.database.RoomControl
 import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 
 class SwitchControlViewModel (
-    val roomControlDatabase: RoomDatabaseDao,
     application: Application)  : AndroidViewModel(application) {
-
-    val rooms: LiveData<List<RoomControl>> = roomControlDatabase.getAllRooms()
 
     private val _navigateToEditRoom = MutableLiveData<String>()
     val navigateToEditRoom : LiveData<String>
