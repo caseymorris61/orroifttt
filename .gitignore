@@ -22,3 +22,4 @@
 /app/release
 .externalNativeBuild
 **/*/res/values/secrets.xml
+*google-services.json
