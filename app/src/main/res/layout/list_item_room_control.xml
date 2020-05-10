@@ -7,7 +7,7 @@
     <data>
         <variable
             name="room"
-            type="com.caseytmorris.sparkdirector.database.RoomControl" />
+            type="com.caseytmorris.sparkdirector.RoomFB" />
         <variable
             name="clickListener"
             type="com.caseytmorris.sparkdirector.switchcontrol.RoomControlListener" />

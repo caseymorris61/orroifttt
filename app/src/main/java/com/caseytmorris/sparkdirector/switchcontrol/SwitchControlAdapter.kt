@@ -4,16 +4,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.caseytmorris.sparkdirector.utils.IFTTTRequestSender
 import com.caseytmorris.sparkdirector.R
-import com.caseytmorris.sparkdirector.database.RoomControl
+import com.caseytmorris.sparkdirector.RoomFB
 import com.caseytmorris.sparkdirector.databinding.ListItemRoomControlBinding
 import com.google.android.material.slider.Slider
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 
-class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter<RoomControl,SwitchControlAdapter.ViewHolder>(SwitchControlDiffCallback()) {
+
+class SwitchControlAdapter(val clickListener: RoomControlListener, private val options: FirebaseRecyclerOptions<RoomFB>) : FirebaseRecyclerAdapter<RoomFB,SwitchControlAdapter.ViewHolder>(options) {
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: RoomFB) {
+        holder.bind(clickListener,model)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -30,7 +35,7 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
 
         private lateinit var lightChangeListener : LightLevelSliderBarListener
 
-        fun bind(clickListener: RoomControlListener,item: RoomControl) {
+        fun bind(clickListener: RoomControlListener,item: RoomFB) {
             lightChangeListener = LightLevelSliderBarListener(binding,item)
             binding.roomName.text = item.roomName
             binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
@@ -56,26 +61,26 @@ class SwitchControlAdapter(val clickListener: RoomControlListener) : ListAdapter
 
 }
 
-class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val room: RoomControl) : Slider.OnSliderTouchListener {
+class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val room: RoomFB) : Slider.OnSliderTouchListener {
 
     fun onButtonClickListener(view: View){
         sendIFTTTLightingRequest(view,room.turnOnWebhook,100)
-        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
-        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.secondaryDarkColor))
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.primaryLightColor))
         binding.seekBar.value = 100F
     }
 
     fun offButtonClickListener(view: View){
         sendIFTTTLightingRequest(view,room.turnOffWebhook,0)
-        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryDarkColor))
-        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.primaryDarkColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.primaryLightColor))
         binding.seekBar.value = 0F
     }
 
     private fun sliderValueSet(view: View, level: Int){
         sendIFTTTLightingRequest(view,room.setWebhook,level)
-        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(R.color.primaryLightColor))
-        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(R.color.secondaryDarkColor))
+        binding.buttonTurnOffList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.primaryLightColor))
+        binding.buttonTurnOnList.setBackgroundColor(binding.root.context.getColor(com.caseytmorris.sparkdirector.R.color.secondaryDarkColor))
 
     }
 
@@ -116,16 +121,6 @@ class LightLevelSliderBarListener(val binding: ListItemRoomControlBinding, val r
     }
 }
 
-class SwitchControlDiffCallback : DiffUtil.ItemCallback<RoomControl>() {
-    override fun areItemsTheSame(oldItem: RoomControl, newItem: RoomControl): Boolean {
-        return oldItem.roomId == newItem.roomId
-    }
-
-    override fun areContentsTheSame(oldItem: RoomControl, newItem: RoomControl): Boolean {
-        return oldItem == newItem
-    }
-}
-
-class RoomControlListener(val clickListener: (roomId: Long) -> Unit) {
-    fun onClick(room: RoomControl) = clickListener(room.roomId)
+class RoomControlListener(val clickListener: (roomName: String) -> Unit) {
+    fun onClick(room: RoomFB) = clickListener(room.roomUID)
 }

@@ -17,14 +17,22 @@ import com.caseytmorris.sparkdirector.databinding.ActivityMainBinding
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private lateinit var firebaseDatabase : FirebaseDatabase
+    private lateinit var homeDatabaseReference: DatabaseReference
+    private lateinit var userDatabaseReference: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+
+    private var userUID: String = ""
 
     companion object {
         const val RC_SIGN_IN = 622
@@ -34,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         @Suppress("UNUSED_VARIABLE")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        homeDatabaseReference = firebaseDatabase.reference.child("user_homes")
 
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -81,13 +92,27 @@ class MainActivity : AppCompatActivity() {
         //unset username if saved
         //detach listener
         Log.i("Casey","Cleanup on signed out please")
+        userUID = ""
     }
 
     private fun onSignedInInitialize(currentUser: FirebaseUser) {
-        Log.i("Casey","User Uid: ${currentUser.uid}")
+        userUID = currentUser.uid
+        Log.i("Casey","User Uid: ${userUID}")
         Log.i("Casey","User Display Name: ${currentUser.displayName}")
 
         //This is when you would attach the event listeners to the firebase stuff
+
+        userDatabaseReference = homeDatabaseReference.child(userUID).child("home")
+
+//        if (userDatabaseReference == null) {
+//            Log.i("Casey","userDatabaseReference is null. New user?")
+//        }
+//        else {
+//            Log.i("Casey","userDatabaseReference is not null. Returning user?")
+//            val roomTest = RoomFB()
+//            roomTest.roomName = "Casey's Other Room"
+//            userDatabaseReference.push().setValue(roomTest)
+//        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

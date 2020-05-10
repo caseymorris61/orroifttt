@@ -14,6 +14,7 @@ import com.caseytmorris.sparkdirector.R
 import com.caseytmorris.sparkdirector.database.RoomControlDatabase
 import com.caseytmorris.sparkdirector.databinding.FragmentSwitchEditRoomBinding
 import com.caseytmorris.sparkdirector.switchaddroom.API_KEY_VALIDATION_STATE
+import com.google.firebase.database.FirebaseDatabase
 
 /**
  * A simple [Fragment] subclass.
@@ -32,9 +33,8 @@ class SwitchEditRoomFragment : Fragment() {
 
         val arguments = SwitchEditRoomFragmentArgs.fromBundle(arguments!!)
 
-        val roomDataSource = RoomControlDatabase.getInstance(application).roomDatabaseDao
-
-        val viewModelFactory = SwitchEditRoomViewModelFactory(arguments.roomControlIdKey,roomDataSource,application)
+        val viewModelFactory = SwitchEditRoomViewModelFactory(arguments.roomControlIdKey,
+            FirebaseDatabase.getInstance().reference.child(arguments.homeReferencePath),application)
 
         val switchEditRoomViewModel = ViewModelProviders.of(
             this, viewModelFactory).get(SwitchEditRoomViewModel::class.java)

@@ -37,6 +37,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="homeReferencePath"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/switchEditRoomFragment"
@@ -45,7 +48,7 @@
         tools:layout="@layout/fragment_switch_edit_room" >
         <argument
             android:name="roomControlIdKey"
-            app:argType="long" />
+            app:argType="string" />
         <action
             android:id="@+id/action_switchEditRoomFragment_to_switchControlFragment"
             app:destination="@id/switchControlFragment"
@@ -53,6 +56,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="homeReferencePath"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI
 import com.caseytmorris.sparkdirector.R
 import com.caseytmorris.sparkdirector.database.RoomControlDatabase
 import com.caseytmorris.sparkdirector.databinding.FragmentSwitchAddRoomBinding
+import com.google.firebase.database.FirebaseDatabase
 
 
 class SwitchAddRoomFragment : Fragment() {
@@ -23,9 +24,11 @@ class SwitchAddRoomFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
 
-        val roomDataSource = RoomControlDatabase.getInstance(application).roomDatabaseDao
+        val arguments = SwitchAddRoomFragmentArgs.fromBundle(arguments!!)
 
-        val viewModelFactory = SwitchAddRoomViewModelFactory(roomDataSource,application)
+        val viewModelFactory = SwitchAddRoomViewModelFactory(
+            FirebaseDatabase.getInstance().reference.child(arguments.homeReferencePath),
+            application)
 
         val switchAddRoomViewModel = ViewModelProviders.of(
             this, viewModelFactory).get(SwitchAddRoomViewModel::class.java)
