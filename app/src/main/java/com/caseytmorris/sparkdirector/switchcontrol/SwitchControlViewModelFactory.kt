@@ -6,13 +6,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
 
 class SwitchControlViewModelFactory (
-    private val roomControlDatabase: RoomDatabaseDao,
     private val application:Application): ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SwitchControlViewModel::class.java)) {
-            return SwitchControlViewModel(roomControlDatabase, application) as T
+            return SwitchControlViewModel(application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

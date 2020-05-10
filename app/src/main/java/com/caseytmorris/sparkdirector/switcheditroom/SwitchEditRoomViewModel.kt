@@ -35,7 +35,6 @@ class SwitchEditRoomViewModel (
         }
 
         override fun onDataChange(p0: DataSnapshot) {
-            Log.i("Casey","Length of Children: ${p0.children}")
             roomName.value = p0.child("roomName").value.toString()
             turnOnKey.value = p0.child("turnOnWebhook").value.toString()
             turnOffKey.value = p0.child("turnOffWebhook").value.toString()
@@ -45,7 +44,6 @@ class SwitchEditRoomViewModel (
     }
 
     init {
-        Log.i("Casey","Room UID: ${roomControlId}")
         uiScope.launch {
             getRoom(roomControlId)?.addValueEventListener(roomListener)
         }
@@ -61,8 +59,7 @@ class SwitchEditRoomViewModel (
             rc.setWebhook = setLevelKey?.value ?: "invalid"
             rc.roomUID = roomControlId
             updateRoom(rc)
-
-
+            
             navBackToControlFragment(view)
         }
     }
