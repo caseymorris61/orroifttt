@@ -11,8 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.caseytmorris.sparkdirector.utils.IFTTTRequestSender
 import com.caseytmorris.sparkdirector.R
-import com.caseytmorris.sparkdirector.database.RoomControl
-import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.RoomFB
+import com.google.firebase.database.DatabaseReference
 import kotlinx.coroutines.*
 
 enum class API_KEY_VALIDATION_STATE {UNKNOWN,FAILED,PASS}
@@ -83,7 +83,7 @@ open class SwitchViewModel(application: Application) : AndroidViewModel(applicat
 }
 
 class SwitchAddRoomViewModel  (
-    private val roomControlDatabase: RoomDatabaseDao,
+    private val homeDatabaseReference: DatabaseReference,
     application: Application
 )  : SwitchViewModel(application) {
 
@@ -102,7 +102,7 @@ class SwitchAddRoomViewModel  (
     fun onSubmitClicked(view: View) {
         uiScope.launch {
             //insert the room
-            val rc = RoomControl()
+            val rc = RoomFB()
             rc.roomName = roomName?.value ?: "invalid"
             rc.turnOnWebhook = turnOnKey?.value ?: "invalid"
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
@@ -122,9 +122,16 @@ class SwitchAddRoomViewModel  (
     }
 
 
-    private suspend fun insertRoom(room: RoomControl) {
+    private suspend fun insertRoom(room: RoomFB) {
         withContext(Dispatchers.IO){
-            roomControlDatabase.insertRoom(room)
+            room.roomUID = homeDatabaseReference?.push().key ?: "invalid"
+
+            if (room.roomUID != "invalid") {
+                homeDatabaseReference.child(room.roomUID).setValue(room)
+            }
+            else {
+                Log.i("Casey","Invalid Room UID. Cant push")
+            }
         }
     }
 

@@ -13,9 +13,16 @@ import androidx.navigation.fragment.findNavController
 import com.caseytmorris.sparkdirector.R
 import com.caseytmorris.sparkdirector.database.RoomControlDatabase
 import com.caseytmorris.sparkdirector.databinding.FragmentSwitchControlBinding
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.caseytmorris.sparkdirector.RoomFB
+import com.google.firebase.database.FirebaseDatabase
+
+
 
 
 class SwitchControl : Fragment() {
+
+    private lateinit var  adapter : SwitchControlAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -23,6 +30,8 @@ class SwitchControl : Fragment() {
             inflater, R.layout.fragment_switch_control, container, false)
 
         val application = requireNotNull(this.activity).application
+
+        val homePath = "user_homes/bhu4ZPRlOHaxLByE1smrkZrLAbq2/home"
 
         val roomDataSource = RoomControlDatabase.getInstance(application).roomDatabaseDao
 
@@ -35,37 +44,51 @@ class SwitchControl : Fragment() {
 
         binding.viewModel = switchControlViewModel
 
-        binding.buttonAddRoom.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_switch_control_fragment_to_switchAddRoomFragment)
-        )
+        binding.buttonAddRoom.setOnClickListener {
+            this.findNavController().navigate(
+                SwitchControlDirections.actionSwitchControlFragmentToSwitchAddRoomFragment(homePath)
+            )
+        }
 
-        val adapter = SwitchControlAdapter( RoomControlListener { roomId ->
-            switchControlViewModel.onRoomControlClicked(roomId)
-        })
+
+        val query = FirebaseDatabase.getInstance()
+            .reference
+            .child(homePath)
+
+        val options = FirebaseRecyclerOptions.Builder<RoomFB>()
+            .setQuery(query, RoomFB::class.java)
+            .setLifecycleOwner(this)
+            .build()
+
+        adapter = SwitchControlAdapter( RoomControlListener { roomId ->
+                switchControlViewModel.onRoomControlClicked(roomId)
+            }
+            , options)
 
         binding.roomList.adapter = adapter
 
-        switchControlViewModel.rooms.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.submitList(it)
-                when (it.isEmpty() ) {
-                    true -> binding.emptyListText.visibility = View.VISIBLE
-                    else -> binding.emptyListText.visibility = View.GONE
-                }
-
-            }
-        })
+//        switchControlViewModel.rooms.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                adapter.submitList(it)
+//                when (it.isEmpty() ) {
+//                    true -> binding.emptyListText.visibility = View.VISIBLE
+//                    else -> binding.emptyListText.visibility = View.GONE
+//                }
+//
+//            }
+//        })
 
         switchControlViewModel.navigateToEditRoom.observe(this, Observer { roomId ->
             roomId?.let {
                 this.findNavController().navigate(
-                    SwitchControlDirections.actionSwitchControlFragmentToSwitchEditRoomFragment(roomId))
+                    SwitchControlDirections.actionSwitchControlFragmentToSwitchEditRoomFragment(roomId,homePath))
                 switchControlViewModel.doneNavigating()
             }
         })
 
+
+
         return binding.root
     }
-
 }
 

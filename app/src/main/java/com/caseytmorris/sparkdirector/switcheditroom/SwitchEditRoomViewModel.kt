@@ -7,29 +7,47 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat.getColor
 import androidx.navigation.findNavController
-import com.caseytmorris.sparkdirector.R
-import com.caseytmorris.sparkdirector.database.RoomControl
-import com.caseytmorris.sparkdirector.database.RoomDatabaseDao
+import com.caseytmorris.sparkdirector.RoomFB
 import com.caseytmorris.sparkdirector.switchaddroom.SwitchViewModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
+
+
 class SwitchEditRoomViewModel (
-    private val roomControlId: Long = 0L,
-    private val roomControlDatabase: RoomDatabaseDao,
+    private val roomControlId: String = "",
+    private val homeDatabaseReference: DatabaseReference,
     application: Application
 )  : SwitchViewModel(application) {
 
-    private lateinit var rc: RoomControl
+    private var rc = RoomFB()
+
+    private val roomListener = object : ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) {
+            // Getting Room failed, log a message
+            Log.w("Casey", "roomListener:onCancelled", p0.toException())
+        }
+
+        override fun onDataChange(p0: DataSnapshot) {
+            Log.i("Casey","Length of Children: ${p0.children}")
+            roomName.value = p0.child("roomName").value.toString()
+            turnOnKey.value = p0.child("turnOnWebhook").value.toString()
+            turnOffKey.value = p0.child("turnOffWebhook").value.toString()
+            setLevelKey.value = p0.child("setWebhook").value.toString()
+            _webhookApiKeyLiveData.value = p0.child("webhookApiKey").value.toString()
+        }
+    }
+
     init {
+        Log.i("Casey","Room UID: ${roomControlId}")
         uiScope.launch {
-            rc = getRoom(roomControlId) ?: RoomControl()
-            roomName.value = rc.roomName
-            turnOnKey.value = rc.turnOnWebhook
-            turnOffKey.value = rc.turnOffWebhook
-            setLevelKey.value = rc.setWebhook
-            _webhookApiKeyLiveData.value = rc.webhookApiKey
+            getRoom(roomControlId)?.addValueEventListener(roomListener)
         }
     }
 
@@ -41,6 +59,7 @@ class SwitchEditRoomViewModel (
             rc.turnOffWebhook = turnOffKey?.value ?: "invalid"
             rc.webhookApiKey = _webhookApiKeyLiveData?.value ?: defaultStringApiKey
             rc.setWebhook = setLevelKey?.value ?: "invalid"
+            rc.roomUID = roomControlId
             updateRoom(rc)
 
 
@@ -62,13 +81,14 @@ class SwitchEditRoomViewModel (
 
         val alert = dialogBuilder.create()
         alert.show()
-        alert.getButton(DialogInterface.BUTTON_POSITIVE)?.setTextColor(getColor(view.context,R.color.deleteColor))
+        alert.getButton(DialogInterface.BUTTON_POSITIVE)?.setTextColor(getColor(view.context,
+            com.caseytmorris.sparkdirector.R.color.deleteColor))
 
     }
 
     private fun navBackToControlFragment(view: View) {
         //navigate back
-        view.findNavController().navigate(R.id.action_switchEditRoomFragment_to_switchControlFragment)
+        view.findNavController().navigate(com.caseytmorris.sparkdirector.R.id.action_switchEditRoomFragment_to_switchControlFragment)
     }
 
     private fun onDeleteConfirmed(view: View){
@@ -77,27 +97,25 @@ class SwitchEditRoomViewModel (
         navBackToControlFragment(view)
     }
 
-    private suspend fun updateRoom(room: RoomControl) {
+    private suspend fun updateRoom(room: RoomFB) {
         withContext(Dispatchers.IO) {
-            roomControlDatabase.updateRoom(room)
+            homeDatabaseReference.child(roomControlId).setValue(room)
         }
     }
 
-    private suspend fun getRoom(id: Long) : RoomControl? {
+    private suspend fun getRoom(id: String) : DatabaseReference? {
         return withContext(Dispatchers.IO){
-             roomControlDatabase.getRoom(id)
+            homeDatabaseReference.child(id)
         }
     }
 
-    private suspend fun delete(roomId: Long){
+    private suspend fun delete(roomId: String){
         withContext(Dispatchers.IO) {
-            roomControlDatabase.getRoom(roomId)?.let {
-                roomControlDatabase.deleteRoom(it)
-            }
+            homeDatabaseReference.child(roomId).removeValue()
         }
     }
 
-    fun deleteRoom(roomId: Long) {
+    fun deleteRoom(roomId: String) {
         uiScope.launch {
             delete(roomId)
         }
