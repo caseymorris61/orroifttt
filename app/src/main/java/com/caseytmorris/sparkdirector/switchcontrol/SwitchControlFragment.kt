@@ -149,11 +149,17 @@ class SwitchControl : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(this.context, "Sign In Result OK", Toast.LENGTH_SHORT).show()
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this.context, "Sign In Cancelled", Toast.LENGTH_SHORT).show()
-                activity?.finish()
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    Toast.makeText(this.context, "Sign In Result OK", Toast.LENGTH_SHORT).show()
+                }
+                Activity.RESULT_CANCELED -> {
+                    Toast.makeText(this.context, "Sign In Cancelled", Toast.LENGTH_SHORT).show()
+                    activity?.finish()
+                }
+                else -> {
+                    Log.i("Casey","firebase auth result code unexpected: $resultCode")
+                }
             }
         }
     }
