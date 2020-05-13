@@ -10,12 +10,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.caseytmorris.sparkdirector.R
+import com.caseytmorris.sparkdirector.RoomSchedule
+import com.caseytmorris.sparkdirector.databinding.FragmentConfigureScheduleBinding
+import com.caseytmorris.sparkdirector.databinding.ListItemRoomScheduleSetBinding
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
 /**
@@ -27,15 +33,28 @@ class configureScheduleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_configure_schedule, container, false)
 
-        val view: View? = inflater.inflate(R.layout.fragment_configure_schedule, container, false)
+        val binding: FragmentConfigureScheduleBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_configure_schedule, container, false)
 
-        val setTimeButton: Button? = view?.findViewById(R.id.btn_time)
-        setTimeButton?.setOnClickListener { showTimePickerDialog(it) }
 
-        return view
+        binding.btnTime.setOnClickListener { showTimePickerDialog(it) }
+
+        val query = FirebaseDatabase.getInstance()
+            .reference
+            .child("/user_homes/bhu4ZPRlOHaxLByE1smrkZrLAbq2/schedules/-M7FBXdx_H-v13FJ13tU/rooms")
+
+        val options = FirebaseRecyclerOptions.Builder<RoomSchedule>()
+            .setQuery(query, RoomSchedule::class.java)
+            .setLifecycleOwner(this)
+            .build()
+
+        val adapter = RoomSelectAdapter(options)
+
+        binding.roomScheduleList.adapter = adapter
+
+
+        return binding.root
     }
 
 
@@ -63,5 +82,49 @@ class configureScheduleFragment : Fragment() {
             TimePickerFragment().show(it, "timePicker")
         }
 
+    }
+}
+
+class RoomSelectAdapter(private val options: FirebaseRecyclerOptions<RoomSchedule>) : FirebaseRecyclerAdapter<RoomSchedule, RoomSelectAdapter.ViewHolder>(options) {
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: RoomSchedule) {
+        holder.bind(model)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
+    }
+
+
+    class ViewHolder private constructor(val binding: ListItemRoomScheduleSetBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+        fun bind(item: RoomSchedule) {
+            binding.room = item
+            binding.scheduleRoomName.text = item.roomName
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemRoomScheduleSetBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
+    }
+}
+
+class RoomScheduleDiffCallback : DiffUtil.ItemCallback<RoomSchedule>() {
+    override fun areItemsTheSame(oldItem: RoomSchedule, newItem: RoomSchedule): Boolean {
+        return oldItem.roomUID == newItem.roomUID
+    }
+
+    override fun areContentsTheSame(oldItem: RoomSchedule, newItem: RoomSchedule): Boolean {
+        return oldItem == newItem
     }
 }
