@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/configure_schedule_menu_option"
+        android:title="Set Schedule"
+        android:orderInCategory="999"/>
+    <item
         android:id="@+id/signout_menu_option"
         android:title="@string/sign_out"
         android:orderInCategory="1000"/>

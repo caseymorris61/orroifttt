@@ -70,5 +70,11 @@
         android:name="com.caseytmorris.sparkdirector.menus.SetupFragment"
         android:label="@string/title_for_fragments"
         tools:layout="@layout/fragment_setup" />
+    <fragment
+        android:id="@+id/configureScheduleFragment"
+        android:name="com.caseytmorris.sparkdirector.schedule.configureScheduleFragment"
+        android:label="@string/title_for_fragments"
+        tools:layout="@layout/fragment_configure_schedule" >
+    </fragment>
 
 </navigation>
